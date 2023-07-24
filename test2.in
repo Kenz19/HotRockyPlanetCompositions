@@ -10,7 +10,7 @@ dispol_WoitkeRefit.dat                  ! dispol_file3
 3                     ! abund_pick
 
 # equilibrium condensation?
-.test.               ! model_eqcond
+.true.               ! model_eqcond
 
 # model options
 1                     ! model_dim  (0,1,2)
