@@ -128,4 +128,4 @@ def CHedit(desired_ratio, numerator, denominator, abundance_file_path):
     abundance_data.to_csv('CustomComposition.dat', sep = ' ', header = False, index = False)
     return
 
-CHedit(1, 'Ca', 'H', 'Abundances.dat')
+#CHedit(1, 'Ca', 'H', 'Abundances.dat')
