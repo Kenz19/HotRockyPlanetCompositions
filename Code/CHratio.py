@@ -44,7 +44,7 @@ def read_dat_file(file_path): # accounts for both numerical and text data
 
         return df
 
-def CHedit():    
+def Ratioedit():    
     abundances = read_dat_file('Abundances.dat')
     #print(abundances)
     
@@ -122,9 +122,10 @@ def CHedit():
     
     abundance_data = abundance_data[abundance_data['Symbol'].isin(l)]
     #print(abundance_data)
+    return
     
     
     abundance_data.to_csv('CustomComposition.dat', sep = ' ', header = False, index = False)
     return
 
-CHedit()
+#Ratioedit()
