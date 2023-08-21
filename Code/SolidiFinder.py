@@ -14,6 +14,7 @@ hopefully will loop through a bunch of C/H and get a good T5O vs C/H plot
 
 ###############################################################################
 import Functions as func
+import CHratio as rat
 import numpy as np
 import shutil
 import os
@@ -26,6 +27,8 @@ import matplotlib.pyplot as plt
 LowestCH = float(input('Lowest C/H limit: '))
 HighestCH = float(input('Highest C/H limit: '))
 step = float(input('Step between each limit: '))
+numerator = input('Numerator element: ')
+denominator = input('Denominator element: ')
 element = input('Enter element of interest (Symbol, case sensitive): ')
 
 # creating range of CH values
@@ -42,7 +45,7 @@ if not os.path.exists('Static_conc_files'):
 
 # edits each abundance file and sets it as the file for use in GGchem input file (default.in)
 for i in range(len(ratios)):
-    abundances = func.CHeditor(r'data/Abundances.dat', 'Ignore', r'input/default.in', ratios[i])
+    abundances = rat.CHedit(ratios[i], numerator, denominator, r'data/Abundances.dat', r'input/default.in')
     abundances.to_csv('Abundance_files_Ca/Abun_' + str(ratios[i]) + '.in', 
                       sep = ' ', header = False, index = False)
     
@@ -234,10 +237,10 @@ for i in range(len(ratios)):
     plt.ylabel(r'$\mathrm{log}_{10}\ n_\mathrm{mol}/n_\mathrm{tot}$')
 
 # Save abundances temp plot with appropriate title
-    plt.title(element + ' Solids' + ', Ca/H = ' + str(round(C/H,5)) + ', T50 = ' + str(round(T50[0], 5)) + 'K')
+    plt.title(element + ' Solids' + ',' + numerator + '/' + denominator + '= ' + str(round(C/H,5)) + ', T50 = ' + str(round(T50[0], 5)) + 'K')
 
 # #plt.savefig('Plots/graph.png')  
-    plt.savefig('Plots/' + 'New_CaHratio = ' + str(round(C/H,5)) + '.png')
+    plt.savefig('Plots/' + numerator + '/'+ denominator + 'ratio = ' + str(round(C/H,5)) + '.png')
 
 
 
