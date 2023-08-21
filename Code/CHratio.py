@@ -123,9 +123,7 @@ def CHedit(desired_ratio, numerator, denominator, abundance_file_path):
     
     abundance_data = abundance_data[abundance_data['Symbol'].isin(l)]
     #print(abundance_data)
-    
-    
-    abundance_data.to_csv('CustomComposition.dat', sep = ' ', header = False, index = False)
-    return
+    #abundance_data.to_csv('CustomComposition.dat', sep = ' ', header = False, index = False)
+    return abundance_data
 
 #CHedit(1, 'Ca', 'H', 'Abundances.dat')
