@@ -44,7 +44,7 @@ def read_dat_file(file_path): # accounts for both numerical and text data
 
         return df
 
-def CHedit(desired_ratio, numerator, denominator, abundance_file_path):
+def CHedit(desired_ratio, numerator, denominator, abundance_file_path, input_file_path):
     
     # reading in the abundances file
     abundances = read_dat_file(abundance_file_path)
@@ -115,7 +115,7 @@ def CHedit(desired_ratio, numerator, denominator, abundance_file_path):
     
     # read second line of the custom.in file
     
-    text = open('custom.in', 'r')
+    text = open(input_file_path, 'r')
     throwaway = text.readline()
     input_elements = text.readline() # second line contains elements in simulation
     l = input_elements.strip().split(' ')
