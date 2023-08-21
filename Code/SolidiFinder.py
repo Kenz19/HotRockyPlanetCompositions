@@ -45,7 +45,7 @@ if not os.path.exists('Static_conc_files'):
 
 # edits each abundance file and sets it as the file for use in GGchem input file (default.in)
 for i in range(len(ratios)):
-    abundances = rat.CHedit(ratios[i], numerator, denominator, r'data/Abundances.dat', r'input/default.in')
+    abundances, ratio = rat.CHedit(ratios[i], numerator, denominator, r'data/Abundances.dat', r'input/default.in')
     abundances.to_csv('Abundance_files_Ca/Abun_' + str(ratios[i]) + '.in', 
                       sep = ' ', header = False, index = False)
     
@@ -227,7 +227,7 @@ for i in range(len(ratios)):
 # saving T50 and C/H ratio to data file
 
     datafile = open('T50.txt', 'a')
-    datafile.write('\n' + str(T50[0]) + ',' + str(C/H) + ','  + str(C_2/H))
+    datafile.write('\n' + str(T50[0]) + ',' + str(ratio) + ','  + str(C_2/H))
     datafile.close()
 
     solids.plot(x="Tg", y = headers[0:-1])
