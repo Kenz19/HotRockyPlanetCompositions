@@ -61,11 +61,11 @@ def CHedit(desired_ratio, numerator, denominator, abundance_file_path, input_fil
     # Establishing initial carbon and hydrogen parameters
     C = solar[elements.index(numerator)] # abundance of numerator element
     xz = solar[5]
-    print(xz)
+    #print(xz)
     H = solar[elements.index(denominator)]
-    print(H)
-    print('Old C/H ratio = ' + str(xz/H))
-    print('Old Ca/H ratio = '  + str(C/H))
+    #print(H)
+    #print('Old C/H ratio = ' + str(xz/H))
+    #print('Old Ca/H ratio = '  + str(C/H))
     
     
     # Establishing current and wanted C/H ratio
@@ -92,11 +92,8 @@ def CHedit(desired_ratio, numerator, denominator, abundance_file_path, input_fil
     
     # needed for converting to astronomical units
     new_H = solar[elements.index(denominator)]
-    new_C = solar[5]
-    #print(new_C, new_H)
-    new_Ca = solar[19]
-    print('New Ca/H ratio = ' + str(new_Ca/new_H))
-    print('New C/H ratio = ' + str(new_C/new_H))
+    new_C = solar[elements.index(numerator)]
+    new_ratio = new_C/new_H
     
     #print(new_H)
     
@@ -108,7 +105,7 @@ def CHedit(desired_ratio, numerator, denominator, abundance_file_path, input_fil
         
     # establishing dataframe to be converted to file
     symbol_list = abundances['symbol'].tolist()
-    abundance_data = pd.DataFrame(list(zip(symbol_list, placehold, solar)), columns =['Symbol', 'value (astronomical)', 'value (abundance)'])
+    abundance_data = pd.DataFrame(list(zip(symbol_list, placehold, solar)), columns = ['Symbol', 'value (astronomical)', 'value (abundance)'])
     
     # now want to compare this dataframe to the input elements in the input file, removing any elements not present from 
     # abundances file
@@ -124,6 +121,6 @@ def CHedit(desired_ratio, numerator, denominator, abundance_file_path, input_fil
     abundance_data = abundance_data[abundance_data['Symbol'].isin(l)]
     #print(abundance_data)
     #abundance_data.to_csv('CustomComposition.dat', sep = ' ', header = False, index = False)
-    return abundance_data
+    return abundance_data, new_ratio
 
 #CHedit(1, 'Ca', 'H', 'Abundances.dat')
